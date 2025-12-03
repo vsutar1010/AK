@@ -28,7 +28,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="footer-bottom">
-        <p><a href="/admin-login" style={{ cursor: 'pointer', textDecoration: 'underline' }}>© {new Date().getFullYear()} AK Tours &amp; Travels. All rights reserved.</a></p>
+        <p>© {new Date().getFullYear()} AK Tours &amp; Travels. All rights reserved.</p>
       </div>
     </footer>
   )

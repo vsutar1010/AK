@@ -1,3 +1,4 @@
+// taking feedback from user and saving to local storage
 import { useEffect, useState } from 'react'
 import SectionLoader from '../components/SectionLoader.jsx'
 

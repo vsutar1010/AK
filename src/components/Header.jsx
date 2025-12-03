@@ -50,6 +50,15 @@ export default function Header() {
                 </NavLink>
               ))}
             </nav>
+            <div className="header-credentials">
+              <NavLink
+                to="/admin-login"
+                className={({ isActive }) => isActive ? 'btn-link btn-outline active' : 'btn-link btn-outline'}
+                onClick={handleNavClick}
+              >
+                Admin Access
+              </NavLink>
+            </div>
           </div>
         </div>
       </header>

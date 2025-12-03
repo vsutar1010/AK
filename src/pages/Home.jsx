@@ -1,12 +1,18 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0)
   
   const heroImages = [
-    'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1200&h=500&fit=crop',
-    'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=1200&h=500&fit=crop',
-    'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1200&h=500&fit=crop'
+    '/photos/_DSC0956.JPG',
+    '/photos/_DSC0993.JPG',
+    '/photos/_DSC1011.JPG',
+    '/photos/_DSC1053.JPG',
+    '/photos/_DSC1067.JPG',
+    '/photos/1720554775809.jpg',
+    '/photos/IMG_7896.JPEG.jpg',
+    '/photos/IMG_7905.JPEG.jpg'
   ]
 
   const infoCards = [
@@ -14,19 +20,22 @@ export default function Home() {
       id: 1,
       title: 'Professional Services',
       description: 'Expert solutions tailored to your needs with the highest quality standards.',
-      icon: '⚡'
+      icon: '⚡',
+      image: '/photos/_DSC1011.JPG'
     },
     {
       id: 2,
       title: '24/7 Support',
       description: 'Round-the-clock assistance whenever you need help or have questions.',
-      icon: '🛠️'
+      icon: '🛠️',
+      image: '/photos/_DSC1012.JPG'
     },
     {
       id: 3,
       title: 'Premium Quality',
       description: 'Top-notch services delivered with attention to detail and excellence.',
-      icon: '⭐'
+      icon: '⭐',
+      image: '/photos/_DSC1014.JPG'
     }
   ]
 
@@ -35,33 +44,50 @@ export default function Home() {
       id: 1,
       title: 'New Service Launch',
       description: 'We are excited to announce our latest premium service package.',
-      icon: '📢'
+      icon: '📢',
+      image: '/photos/_DSC1053.JPG'
     },
     {
       id: 2,
       title: 'Company Expansion',
       description: 'Opening new branches in three major cities this quarter.',
-      icon: '🏢'
+      icon: '🏢',
+      image: '/photos/_DSC1054.JPG'
     },
     {
       id: 3,
       title: 'Award Recognition',
       description: 'Proud to receive the Best Service Provider award for 2024.',
-      icon: '🏆'
+      icon: '🏆',
+      image: '/photos/_DSC1059.JPG'
     }
   ]
 
-  const sliderImages = Array.from({ length: 10 }, (_, i) => ({
-    id: i + 1,
-    icon: ['🎨', '📱', '💻', '🎯', '🚀', '🔧', '📊', '🎪', '🌟', '💡'][i]
-  }))
+  const galleryImages = [
+    '/photos/_DSC0993.JPG',
+    '/photos/_DSC0995.JPG',
+    '/photos/_DSC1011.JPG',
+    '/photos/_DSC1012.JPG',
+    '/photos/_DSC1014.JPG',
+    '/photos/_DSC1053.JPG',
+    '/photos/_DSC1054.JPG',
+    '/photos/_DSC1059.JPG',
+    '/photos/_DSC1060.JPG',
+    '/photos/_DSC1067.JPG',
+    '/photos/_DSC1068.JPG',
+    '/photos/_DSC1070.JPG',
+    '/photos/_DSC1075.JPG',
+    '/photos/_DSC1131.JPG'
+  ]
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroImages.length)
-    }, 1000)
+    }, 5000)
     return () => clearInterval(interval)
   }, [])
+
+  const navigate = useNavigate()
 
   return (
     <div>
@@ -74,9 +100,20 @@ export default function Home() {
             style={{ backgroundImage: `url(${image})` }}
           />
         ))}
-        <div className="hero-content">
-          <h1>Welcome to AK</h1>
-          <p>Your premier destination for professional services and innovative solutions. We deliver excellence with every project.</p>
+      </div>
+
+      {/* Hero caption and CTAs */}
+      <div className="hero-caption">
+        <div className="hero-caption-inner">
+          <h1>Explore Unforgettable Journeys</h1>
+          <p>Travel with AK Tours &amp; Travels — memories made easy. Lorem ipsum dolor sit amet consectetur 
+            adipisicing elit. Blanditiis minus in, voluptatibus assumenda beatae asperiores tenetur, odit,
+             eveniet quo corporis aperiam distinctio. Vel esse nobis, pariatur quaerat voluptatem molestiae
+             </p>
+          <div className="hero-cta">
+            <button className="btn-primary" onClick={() => navigate('/feedback')}>Feedback</button>
+            <button className="btn-whatsapp" onClick={() => window.open('https://wa.me/919730825092', '_blank', 'noopener')}>Book via WhatsApp</button>
+          </div>
         </div>
       </div>
 
@@ -89,7 +126,7 @@ export default function Home() {
           {infoCards.map((card) => (
             <div key={card.id} className="info-card">
               <div className="info-card-image">
-                {card.icon}
+                <img src={card.image} alt={card.title} />
               </div>
               <div className="info-card-content">
                 <h3>{card.title}</h3>
@@ -104,7 +141,7 @@ export default function Home() {
       </div>
 
       {/* Latest News */}
-      <div className="news-section">
+      <div className="news-section news-section-tight">
         <div className="news-header">
           <h2>Latest News</h2>
         </div>
@@ -112,7 +149,7 @@ export default function Home() {
           {newsItems.map((news) => (
             <div key={news.id} className="news-card">
               <div className="news-image">
-                {news.icon}
+                <img src={news.image} alt={news.title} />
               </div>
               <div className="news-content">
                 <h3>{news.title}</h3>
@@ -133,12 +170,15 @@ export default function Home() {
         </div>
         <div className="image-slider-container">
           <div className="image-slider">
-            {[...sliderImages, ...sliderImages].map((image, index) => (
+            {[...galleryImages, ...galleryImages].map((image, index) => (
               <div key={index} className="slider-image">
-                {image.icon}
+                <img src={image} alt={`Gallery image ${index + 1}`} />
               </div>
             ))}
           </div>
+        </div>
+        <div className="gallery-cta">
+          <button className="btn-secondary" onClick={() => navigate('/gallery')}>Explore More</button>
         </div>
       </div>
     </div>

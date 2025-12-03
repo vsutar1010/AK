@@ -9,9 +9,12 @@ function formatDate(iso) {
 
 function loadApproved() {
   try {
-    const raw = localStorage.getItem('ak_approved_feedbacks')
-    if (!raw) return []
-    return JSON.parse(raw)
+    const rawA = localStorage.getItem('ak_approved_feedbacks')
+    const rawB = localStorage.getItem('ak_feedbacks')
+    const a = rawA ? JSON.parse(rawA) : []
+    const b = rawB ? JSON.parse(rawB) : []
+    // show approved first, then recent feedbacks
+    return [...a, ...b]
   } catch (e) { return [] }
 }
 
@@ -44,8 +47,8 @@ export default function Feedback() {
     <SectionLoader isLoading={isLoading} height="640px">
       <div className="feedback-page container">
         <div className="page-head centered">
-          <h1 className="page-title">User Feedback</h1>
-          <p className="page-sub">Real experiences from real users — focused and concise.</p>
+          <h1 className="page-title">Reviews</h1>
+          <p className="page-sub">Customer reviews and shared photos/videos from past customers.</p>
         </div>
 
         <div className="fb-grid">
@@ -66,7 +69,7 @@ export default function Feedback() {
 
           <main className="fb-right">
             <section className="feedback-list" aria-live="polite">
-              {feedbacks.length === 0 && <div className="empty">No feedback available.</div>}
+              {feedbacks.length === 0 && <div className="empty">No reviews available.</div>}
               {feedbacks.map(item => (
                 <article key={item.id} className="feedback-card">
                   <div className="card-left">
@@ -83,6 +86,16 @@ export default function Feedback() {
                     </div>
 
                     <div className="card-message">{item.message}</div>
+
+                    {item.media && (
+                      <div style={{ marginTop: 10 }}>
+                        {String(item.media).startsWith('data:video') ? (
+                          <video src={item.media} controls style={{ maxWidth: '100%', borderRadius: 8 }} />
+                        ) : (
+                          <img src={item.media} alt="attachment" style={{ maxWidth: '420px', borderRadius: 8 }} />
+                        )}
+                      </div>
+                    )}
 
                     <div className="card-footer">
                       <div className="card-tags">

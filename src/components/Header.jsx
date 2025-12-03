@@ -11,8 +11,8 @@ export default function Header() {
     { to: '/latest-news', label: 'Latest News' },
     { to: '/contact', label: 'Contact' },
     { to: '/services', label: 'Service' },
-    { to: '/profile', label: 'Profile' },
-    { to: '/feedback', label: 'Feedback' }
+    { to: '/profile', label: 'Feedback' },
+    { to: '/feedback', label: 'Reviews' }
   ]
 
   const handleNavClick = () => setIsMenuOpen(false)
@@ -50,15 +50,6 @@ export default function Header() {
                 </NavLink>
               ))}
             </nav>
-            <div className="header-credentials">
-              <NavLink
-                to="/admin-login"
-                className={({ isActive }) => isActive ? 'btn-link btn-outline active' : 'btn-link btn-outline'}
-                onClick={handleNavClick}
-              >
-                Admin Access
-              </NavLink>
-            </div>
           </div>
         </div>
       </header>

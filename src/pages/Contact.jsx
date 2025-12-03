@@ -1,27 +1,4 @@
-import { useState } from 'react'
-
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: '',
-    service: 'general'
-  })
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    })
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    // Handle form submission
-    console.log('Form submitted:', formData)
-    alert('Thank you for your message! We will get back to you soon.')
-  }
 
   const contactInfo = [
     {
@@ -93,84 +70,7 @@ export default function Contact() {
           
         </div>
 
-        {/* Contact Form */}
-        <div className="contact-form-section">
-          <h2>Send us a Message</h2>
-          <form onSubmit={handleSubmit} className="contact-form">
-            <div className="form-row">
-              <div className="form-group">
-                <label htmlFor="name">Full Name *</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  placeholder="Enter your full name"
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="phone">Phone Number *</label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  required
-                  placeholder="Enter your phone number"
-                />
-              </div>
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="email">Email Address</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Enter your email address"
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="service">Service Required</label>
-              <select
-                id="service"
-                name="service"
-                value={formData.service}
-                onChange={handleChange}
-              >
-                <option value="general">General Inquiry</option>
-                <option value="pune-mumbai">Pune-Mumbai Service</option>
-                <option value="airport">Airport Transfer</option>
-                <option value="corporate">Corporate Travel</option>
-                <option value="group">Group Booking</option>
-                <option value="luxury">Luxury Vehicle</option>
-              </select>
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="message">Message *</label>
-              <textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                required
-                placeholder="Tell us about your travel requirements..."
-                rows="5"
-              ></textarea>
-            </div>
-
-            <button type="submit" className="btn-submit">
-              Send Message
-            </button>
-          </form>
-        </div>
+        {/* Contact Form removed per request */}
       </div>
 
       {/* Quick Contact */}
